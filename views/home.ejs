@@ -1,0 +1,14 @@
+<%- include('partials/header'); -%>
+
+
+<h1>Hello!</h1>
+<p><%=homeStartingContent%></p>
+
+<% postsArray.forEach(function (post){ %>
+<% console.log(post.postTitle) %>
+<h1><%=post.postTitle%></h1>
+<p><%=post.postBody%></p>
+<% }) %>
+
+
+<%- include('partials/footer'); -%>
