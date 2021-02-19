@@ -5,9 +5,10 @@
 <p><%=homeStartingContent%></p>
 
 <% postsArray.forEach(function (post){ %>
-<% console.log(post.postTitle) %>
 <h1><%=post.postTitle%></h1>
-<p><%=post.postBody%></p>
+<p><%=post.postBody.substring(0, 100) + '...'%>
+    <a href="/posts/ + <%=post.postTitle%>">Read More</a>
+</p>
 <% }) %>
 
 

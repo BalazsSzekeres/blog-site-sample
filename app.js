@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
+const _ = require('lodash');
 
 //To be turned into a DB later
 let postsArray = []
@@ -48,6 +49,21 @@ app.get('/about', (req, res) => {
 
 app.get('/compose', (req, res) => {
   res.render('compose')
+});
+
+app.get('/posts/:postName', (req, res) => {
+  const requestedPost = _.lowerCase(req.params.postName);
+  console.log('The requested post is: ' + requestedPost)
+
+  postsArray.forEach(function (post) {
+    const storedTitle = _.lowerCase(post.postTitle);
+
+    if (requestedPost === storedTitle) {
+      console.log("Site found, rendering...")
+      res.render('post', {postName: post.postTitle, postBody: post.postBody});
+    }
+
+  })
 });
 
 app.post('/compose', (req, res) => {
